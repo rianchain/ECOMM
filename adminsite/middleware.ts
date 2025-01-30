@@ -1,12 +1,20 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
+const isPublicRoute = createRouteMatcher([
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/:path*",
+]);
 
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
     await auth.protect();
   }
 });
+
+// export default authMiddleware({
+//   publicRoutes: ["/api/:path*"],
+// });
 
 export const config = {
   matcher: [
@@ -16,3 +24,6 @@ export const config = {
     "/(api|trpc)(.*)",
   ],
 };
+function authMiddleware(arg0: { publicRoutes: string[] }) {
+  throw new Error("Function not implemented.");
+}
