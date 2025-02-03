@@ -1,6 +1,6 @@
 import db from "@/lib/db";
 import { BannerClient } from "./components/client";
-import { BannerColumn } from "./components/column";
+import { BannerColumn } from "./components/columns";
 
 import { format } from "date-fns";
 
