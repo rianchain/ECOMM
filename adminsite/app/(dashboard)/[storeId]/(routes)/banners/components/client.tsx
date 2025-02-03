@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
-import { BannerColumn, columns } from "./column";
+import { BannerColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 
 interface BannerClientProps {
