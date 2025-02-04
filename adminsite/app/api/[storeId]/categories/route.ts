@@ -10,18 +10,18 @@ export async function POST(
     const { userId } = await auth();
     const body = await req.json();
 
-    const { label, imageUrl } = body;
+    const { name, bannerId } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (!label) {
-      return new NextResponse("Nama banner perlu diinput", { status: 400 });
+    if (!name) {
+      return new NextResponse("Nama category perlu diinput", { status: 400 });
     }
 
-    if (!imageUrl) {
-      return new NextResponse("Image banner perlu diinput", { status: 400 });
+    if (!bannerId) {
+      return new NextResponse("Banner Id perlu diinput", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -39,17 +39,17 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const banner = await db.banner.create({
+    const category = await db.category.create({
       data: {
-        label,
-        imageUrl,
+        name,
+        bannerId,
         storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(banner);
+    return NextResponse.json(category);
   } catch (error) {
-    console.log("[BANNERS_POST]", error);
+    console.log("[CATEGORIES_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
@@ -63,15 +63,15 @@ export async function GET(
       return new NextResponse("Store id URL dibutuhkan");
     }
 
-    const banner = await db.banner.findMany({
+    const categories = await db.category.findMany({
       where: {
         storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(banner);
+    return NextResponse.json(categories);
   } catch (error) {
-    console.log("[BANNERS_GET]", error);
+    console.log("[CATEGORIES_GET]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
