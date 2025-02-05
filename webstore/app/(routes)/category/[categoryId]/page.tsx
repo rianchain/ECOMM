@@ -12,8 +12,8 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
-  // Tunggu params untuk mengakses categoryId
-  const { categoryId } = await params;
+  // Akses categoryId langsung dari params
+  const { categoryId } = params;
 
   const products = await getProducts({
     categoryId: categoryId,

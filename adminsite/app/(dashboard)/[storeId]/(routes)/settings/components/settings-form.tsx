@@ -56,7 +56,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
       router.refresh();
       toast.success("Toko berhasil di update");
     } catch (error) {
-      toast.error("Cek kembali data yang di input");
+      toast.error("Cek kembali data yang diinput");
     } finally {
       setLoading(false);
     }
@@ -68,9 +68,9 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
       await axios.delete(`/api/stores/${params.storeId}`);
       router.refresh();
       router.push("/");
-      toast.success("Toko berhasil di hapus");
+      toast.success("Toko berhasil dihapus");
     } catch (error) {
-      toast.error("Cek kembali data dan koneksi anda");
+      toast.error("Cek kembali data dan koneksi mu");
     } finally {
       setLoading(false);
       setOpen(false);
