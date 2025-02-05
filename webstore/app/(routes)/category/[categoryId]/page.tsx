@@ -5,18 +5,23 @@ import Container from "@/components/ui/container";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 
+// Definisikan Params sebagai Promise
+type Params = Promise<{ categoryId: string }>;
+
 interface CategoryPageProps {
-  params: {
-    categoryId: string;
-  };
+  params: Params;
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
+  // Tunggu untuk mendapatkan nilai dari params
+  const { categoryId } = await params;
+
   const products = await getProducts({
-    categoryId: params.categoryId,
+    categoryId: categoryId,
   });
 
-  const category = await getCategory(params.categoryId);
+  const category = await getCategory(categoryId);
+
   return (
     <div className="bg-white">
       <Container>
